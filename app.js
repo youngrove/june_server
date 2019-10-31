@@ -1,6 +1,8 @@
 const express = require("express");
 const http = require("http");
 const app = express();
+
+const db = require("./src/db/connection");
 // const cors = require("cors");
 // const bodyParser = require("body-parser");
 // const router = express.Router();
