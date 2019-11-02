@@ -2,6 +2,7 @@ const express = require("express");
 const http = require("http");
 const app = express();
 const userRouter = require("./routes/userRouter");
+const roomRouter = require("./routes/roomRouter");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 // const router = express.Router();
@@ -17,6 +18,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/user", userRouter);
+app.use("/room", roomRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to server");

@@ -17,6 +17,8 @@ sequelize
     console.error("Unable to connect to the database:", err);
   });
 
+sequelize.sync();
+
 module.exports = sequelize;
 //prevent require multiple times require
 global.sequelize = sequelize;

@@ -12,7 +12,7 @@ module.exports = {
   async createUser(req, res, next) {
     try {
       const { id, password } = req.body;
-      const existAccount = await User.findOne({ where: req.body.id });
+      const existAccount = await User.findOne({ where: id });
       if (existAccount) {
         return res.status(409).json({ code: 409, message: "Already Exist Id" });
       }
