@@ -1,28 +1,27 @@
 const express = require("express");
 const http = require("http");
 const app = express();
-
-const db = require("./src/db/connection");
-// const cors = require("cors");
-// const bodyParser = require("body-parser");
+const userRouter = require("./routes/userRouter");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 // const router = express.Router();
 const PORT = process.env.NODE_ENV === "production" ? 3001 : 3002;
 
-// const corsOptions = {
-//   origin: "http://localhost:" + PORT,
-//   optionsSuccessStatus: 200
-// };
-// const jsonParser = bodyParser.json();
-// const urlencodedParser = bodyParser.urlencoded({ extended: false });
+//Db connection
+require("./src/db/connection");
 
-app.listen(PORT, () => {
-  console.log(`server listen on ${PORT}`);
-});
+// parse application/json
+app.use(bodyParser.json());
+app.use(cors());
+//parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// // router.get("*", (res, req) => {
-// //   res.status(404).send("what?");
-// // });
+app.use("/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to server");
+});
+
+app.listen(PORT, () => {
+  console.log(`server listen on ${PORT}`);
 });
