@@ -1,5 +1,16 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
+// const generateToken = require("../src/lib/token");
 
+require("dotenv").config();
+
+var payload = {
+  data1: "Data 1",
+  data2: "Data 2",
+  data3: "Data 3",
+  data4: "Data 4"
+};
+console.log(process.env.JWT_SECRET);
 module.exports = {
   async getAllUser(req, res) {
     try {
@@ -30,7 +41,12 @@ module.exports = {
           return res.status(404).send("User Not Found");
         }
         if (user.dataValues.password === password) {
-          res.status(200).send("Login is Success");
+          const token = jwt.sign(
+            { exp: Math.floor(Date.now() / 1000) + 60 },
+            process.env.JWT_SECRET
+          );
+          console.log(token);
+          return res.status(200).send("Login is Success");
         } else {
           return res.status(401).send("Invalid Password!");
         }
