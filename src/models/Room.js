@@ -4,14 +4,14 @@ module.exports = sequelize.define(
   "Room",
   {
     roomName: {
-      type: Sequelize.STRING(25),
+      type: Sequelize.STRING(20),
       allowNull: false,
       primaryKey: true
     },
     gotWindow: { type: Sequelize.BOOLEAN, allowNull: false },
     price: { type: Sequelize.INTEGER(15), allowNull: false },
-    width: { type: Sequelize.INTEGER(15) },
-    gotToilet: { type: Sequelize.BOOLEAN }
+    isAvailable: { type: Sequelize.BOOLEAN, allowNull: false },
+    link: { type: Sequelize.STRING(300) }
   },
   { timestamps: false }
 );

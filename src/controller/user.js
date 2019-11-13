@@ -45,8 +45,9 @@ module.exports = {
             { exp: Math.floor(Date.now() / 1000) + 60 },
             process.env.JWT_SECRET
           );
-          console.log(token);
-          return res.status(200).send("Login is Success");
+          return res
+            .status(200)
+            .json({ message: "Login success", token: token });
         } else {
           return res.status(401).send("Invalid Password!");
         }
