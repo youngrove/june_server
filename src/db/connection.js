@@ -1,11 +1,11 @@
 const Sequelize = require("sequelize");
 const env = process.env.NODE_ENV || "development";
-// const config = require("../../config/")[env];
-// const { username, password, database, dialect, host } = config;
+const config = require("../../config/config.json")[env];
+const { username, password, database, host, dialect } = config;
 
-const sequelize = new Sequelize("june", "root", "", {
-  dialect: "mysql",
-  host: "localhost"
+const sequelize = new Sequelize(database, username, password, {
+  host: host,
+  dialect: dialect
 });
 
 sequelize

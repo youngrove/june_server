@@ -4,13 +4,6 @@ const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
-var payload = {
-  data1: "Data 1",
-  data2: "Data 2",
-  data3: "Data 3",
-  data4: "Data 4"
-};
-console.log(process.env.JWT_SECRET);
 module.exports = {
   async getAllUser(req, res) {
     try {
