@@ -1,7 +1,6 @@
 const User = require("../models/User");
-const jwt = require("jsonwebtoken");
+// const jwt = require("jsonwebtoken");
 // const generateToken = require("../src/lib/token");
-
 require("dotenv").config();
 
 module.exports = {
@@ -34,13 +33,11 @@ module.exports = {
           return res.status(404).send("User Not Found");
         }
         if (user.dataValues.password === password) {
-          const token = jwt.sign(
-            { exp: Math.floor(Date.now() / 1000) + 60 },
-            process.env.JWT_SECRET
-          );
-          return res
-            .status(200)
-            .json({ message: "Login success", token: token });
+          // const token = jwt.sign(
+          //   { exp: Math.floor(Date.now() / 1000) + 60 },
+          //   process.env.JWT_SECRET
+          // );
+          return res.status(200).json({ message: "Login success" }); // , token: token
         } else {
           return res.status(401).send("Invalid Password!");
         }
